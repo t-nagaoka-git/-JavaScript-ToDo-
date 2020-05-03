@@ -27,7 +27,7 @@
   <input id="task" type="text"><button id="add-button">追加</button>
 
   <script>
-    let count = 0;
+    const todos = [];
     document.getElementById('add-button').addEventListener('click', ()=> {
       const table = document.getElementById('task-table');
       const task = document.getElementById('task');
@@ -35,10 +35,16 @@
       const cellId = row.insertCell(0);
       const cellComment = row.insertCell(1);
       const cellStatus = row.insertCell(2);
-      cellId.innerHTML = count;
-      cellComment.innerHTML = task.value;
-      cellStatus.innerHTML = '<button>作業中</button><button>削除</button>';
-      count++;
+      const todo = {
+        task: task.value,
+        status: '作業中'
+      };
+      todos.push(todo);
+      const todoIndex = todos.length - 1;
+      cellId.innerHTML = todoIndex;
+      cellComment.innerHTML = todo.task;
+      cellStatus.innerHTML = '<button>' + todo.status + '</button><button>削除</button>';
+      task.value = '';
     });
   </script>
 </body>
