@@ -35,15 +35,20 @@
       const cellId = row.insertCell(0);
       const cellComment = row.insertCell(1);
       const cellStatus = row.insertCell(2);
+      const statusChangeButton = document.createElement('button');
+      const deleteButton = document.createElement('button');
       const todo = {
         task: task.value,
         status: '作業中'
       };
       todos.push(todo);
       const todoIndex = todos.length - 1;
-      cellId.innerHTML = todoIndex;
-      cellComment.innerHTML = todo.task;
-      cellStatus.innerHTML = '<button>' + todo.status + '</button><button>削除</button>';
+      cellId.appendChild(document.createTextNode(todoIndex));
+      cellComment.appendChild(document.createTextNode(todo.task));
+      statusChangeButton.appendChild(document.createTextNode(todo.status));
+      cellStatus.appendChild(statusChangeButton);
+      deleteButton.appendChild(document.createTextNode('削除'));
+      cellStatus.appendChild(deleteButton);
       task.value = '';
     });
   </script>
