@@ -42,12 +42,15 @@
         status: '作業中'
       };
       todos.push(todo);
-      const todoIndex = todos.length - 1;
-      cellId.appendChild(document.createTextNode(todoIndex));
-      cellComment.appendChild(document.createTextNode(todo.task));
-      statusChangeButton.appendChild(document.createTextNode(todo.status));
+      const textIndex = document.createTextNode(todos.length - 1);
+      const textTask = document.createTextNode(todo.task)
+      const textStatus = document.createTextNode(todo.status);
+      const textDelete = document.createTextNode('削除');
+      cellId.appendChild(textIndex);
+      cellComment.appendChild(textTask);
+      statusChangeButton.appendChild(textStatus);
+      deleteButton.appendChild(textDelete);
       cellStatus.appendChild(statusChangeButton);
-      deleteButton.appendChild(document.createTextNode('削除'));
       cellStatus.appendChild(deleteButton);
       task.value = '';
     });
