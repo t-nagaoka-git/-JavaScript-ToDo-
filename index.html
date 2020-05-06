@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript課題③-1 タスク追加機能</title>
+</head>
+<body>
+  <h1>ToDoリスト</h1>
+
+  <div id="task-status">
+    <input type="radio" name="status" value="all" checked>すべて
+    <input type="radio" name="status" value="working">作業中
+    <input type="radio" name="status" value="complete">完了
+  </div>
+
+  <div id="task-area">
+    <table id="task-table">
+      <tr>
+        <th>ID</th>
+        <th>コメント</th>
+        <th>状態</th>
+      </tr>
+    </table>
+  </div>
+
+  <h2>新規タスクの追加</h2>
+  <input id="task" type="text"><button id="add-button">追加</button>
+
+  <script>
+    const todos = [];
+    document.getElementById('add-button').addEventListener('click', ()=> {
+      const table = document.getElementById('task-table');
+      const task = document.getElementById('task');
+      const row = table.insertRow();
+      const cellId = row.insertCell(0);
+      const cellComment = row.insertCell(1);
+      const cellStatus = row.insertCell(2);
+      const statusChangeButton = document.createElement('button');
+      const deleteButton = document.createElement('button');
+      const todo = {
+        task: task.value,
+        status: '作業中'
+      };
+      todos.push(todo);
+      const textIndex = document.createTextNode(todos.length - 1);
+      const textTask = document.createTextNode(todo.task)
+      const textStatus = document.createTextNode(todo.status);
+      const textDelete = document.createTextNode('削除');
+      cellId.appendChild(textIndex);
+      cellComment.appendChild(textTask);
+      statusChangeButton.appendChild(textStatus);
+      deleteButton.appendChild(textDelete);
+      cellStatus.appendChild(statusChangeButton);
+      cellStatus.appendChild(deleteButton);
+      task.value = '';
+    });
+  </script>
+</body>
+</html>
