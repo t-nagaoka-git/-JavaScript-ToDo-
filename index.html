@@ -50,16 +50,15 @@
       cellComment.appendChild(textTask);
       statusChangeButton.appendChild(textStatus);
       deleteButton.appendChild(textDelete);
-      deleteButton.onclick = function() {
-        deleteTask(this);
-      };
+      deleteButton.addEventListener('click', function() {
+        deleteTask(this, textIndex);
+      });
       cellStatus.appendChild(statusChangeButton);
       cellStatus.appendChild(deleteButton);
       task.value = '';
     });
-    function deleteTask(object) {
-      const tr = object.parentNode.parentNode;
-      const index = tr.cells[0].textContent;
+    function deleteTask(deleteButton, index) {
+      const tr = deleteButton.parentNode.parentNode;
       const tableRows = document.getElementById('task-table').rows;
       tr.parentNode.deleteRow(tr.rowIndex);
       todos.splice(index, 1);
