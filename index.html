@@ -50,10 +50,23 @@
       cellComment.appendChild(textTask);
       statusChangeButton.appendChild(textStatus);
       deleteButton.appendChild(textDelete);
+      deleteButton.addEventListener('click', function() {
+        deleteTask(this, todo);
+      });
       cellStatus.appendChild(statusChangeButton);
       cellStatus.appendChild(deleteButton);
       task.value = '';
     });
+    function deleteTask(deleteButton, todo) {
+      const tr = deleteButton.parentNode.parentNode;
+      const deleteIndex = todos.indexOf(todo);
+      const tableRows = document.getElementById('task-table').rows;
+      tr.parentNode.deleteRow(tr.rowIndex);
+      todos.splice(deleteIndex, 1);
+      for (let i = 1; i < tableRows.length; i++) {
+        tableRows[i].cells[0].textContent = i - 1;
+      }
+    }
   </script>
 </body>
 </html>
