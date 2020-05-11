@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>JavaScript課題③-1 タスク追加機能</title>
+  <title>JavaScript課題③-3 タスク状態変更機能</title>
 </head>
 <body>
   <h1>ToDoリスト</h1>
@@ -26,47 +26,6 @@
   <h2>新規タスクの追加</h2>
   <input id="task" type="text"><button id="add-button">追加</button>
 
-  <script>
-    const todos = [];
-    document.getElementById('add-button').addEventListener('click', ()=> {
-      const table = document.getElementById('task-table');
-      const task = document.getElementById('task');
-      const row = table.insertRow();
-      const cellId = row.insertCell(0);
-      const cellComment = row.insertCell(1);
-      const cellStatus = row.insertCell(2);
-      const statusChangeButton = document.createElement('button');
-      const deleteButton = document.createElement('button');
-      const todo = {
-        task: task.value,
-        status: '作業中'
-      };
-      todos.push(todo);
-      const textIndex = document.createTextNode(todos.length - 1);
-      const textTask = document.createTextNode(todo.task)
-      const textStatus = document.createTextNode(todo.status);
-      const textDelete = document.createTextNode('削除');
-      cellId.appendChild(textIndex);
-      cellComment.appendChild(textTask);
-      statusChangeButton.appendChild(textStatus);
-      deleteButton.appendChild(textDelete);
-      deleteButton.addEventListener('click', function() {
-        deleteTask(this, todo);
-      });
-      cellStatus.appendChild(statusChangeButton);
-      cellStatus.appendChild(deleteButton);
-      task.value = '';
-    });
-    function deleteTask(deleteButton, todo) {
-      const tr = deleteButton.parentNode.parentNode;
-      const deleteIndex = todos.indexOf(todo);
-      const tableRows = document.getElementById('task-table').rows;
-      tr.parentNode.deleteRow(tr.rowIndex);
-      todos.splice(deleteIndex, 1);
-      for (let i = 1; i < tableRows.length; i++) {
-        tableRows[i].cells[0].textContent = i - 1;
-      }
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
