@@ -79,14 +79,16 @@
   // Todoの表示処理
   function DisplayToDo() {
     const table = document.getElementById('task-table');
-    const rows = table.rows;
+    const rows = Array.from(table.rows);
     const status = radioButtons[0].checked ? 'すべて' : radioButtons[1].checked ? '作業中' : '完了';
-    for (let i = 1; i < rows.length; i++) {
-      if (status === 'すべて' || status === todos[i - 1].status) {
-        rows[i].classList.remove('hide');
+    rows.forEach((row, index) => {
+      if (index < 1) return;
+
+      if (status === 'すべて' || status === todos[index - 1].status) {
+        row.classList.remove('hide');
       } else {
-        rows[i].classList.add('hide');
+        row.classList.add('hide');
       }
-    }
+    });
   }
 }
