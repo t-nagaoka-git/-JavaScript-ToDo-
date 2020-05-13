@@ -68,4 +68,27 @@
     });
     return deleteButton;
   }
+
+  const radioButtons = document.getElementsByName('status');
+  radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('click', () => {
+      DisplayToDo();
+    });
+  });
+
+  // Todoの表示処理
+  function DisplayToDo() {
+    const table = document.getElementById('task-table');
+    const rows = Array.from(table.rows);
+    const status = radioButtons[0].checked ? 'すべて' : radioButtons[1].checked ? '作業中' : '完了';
+    rows.forEach((row, index) => {
+      if (index < 1) return;
+
+      if (status === 'すべて' || status === todos[index - 1].status) {
+        row.classList.remove('hide');
+      } else {
+        row.classList.add('hide');
+      }
+    });
+  }
 }
